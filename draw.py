@@ -61,6 +61,10 @@ class Draw:
             num = int(s)
             self.getDirection(lastnum - num, gridLength)
 
+            # fix wrapping
+            if (abs(lastnum - num) > 26):
+                turtle.penup()
+
             #do math to find next position
             #75 should give the cordinates (0,3)
             movex = num % gridLength
