@@ -20,6 +20,10 @@ class Draw:
         self._x = -620
         self._y = 327
 
+        #store last position
+        self._lastx = -1
+        self._lasty = -1
+
         #window size
         turtle.setup(1280, 692)  # half 640, 347 #padding 20px #620,327
 
@@ -62,6 +66,10 @@ class Draw:
             movex = num % gridLength
             movey = num / gridLength
             movey = int(movey)
+
+            #prevent the wrap around effect from drawing a line across the screen
+            if abs(movex - self._lastx) == (gridLength - 1) or abs(movey - self._lasty) == (gridLength - 1):
+                turtle.penup()
 
             #move to new location
             turtle.goto((movex * self._sot * 3) + xzero, (movey * self._sot * 3) + yzero)
